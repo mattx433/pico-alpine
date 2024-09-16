@@ -21,8 +21,12 @@ jobs:
         run: bash ./build.sh
       - name: Zip output
         run: bash ./zip_output.sh
+      - name: Upload zip to artifacts
+        with:
+          path: ./pico-alpine.zip
       - name: Upload zip to release
         uses: softprops/action-gh-release@v2
         with:
           files: pico-alpine.zip
           fail_on_unmatched_files: true
+        if: startsWith(github.ref, 'refs/tags/')
