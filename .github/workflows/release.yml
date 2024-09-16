@@ -1,4 +1,6 @@
-on: workflow_dispatch
+on:
+  - workflow_dispatch
+  - push
 name: Build Images
 jobs:
   build:
@@ -9,7 +11,8 @@ jobs:
         uses: docker/setup-qemu-action@v3
       - name: Checkout
         uses: actions/checkout@master
-        submodules: true
+        with:
+          submodules: true
       - name: Make rootfs
         run: sudo bash ./make_rootfs.sh
       - name: Build with Luckfox SDK
