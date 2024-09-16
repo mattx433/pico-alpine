@@ -1,0 +1,20 @@
+on: workflow_dispatch
+name: Build Images
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Build
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+      - name: Make rootfs
+        run: bash ./make_rootfs.sh
+      - name: Build with Luckfox SDK
+        run: bash ./build.sh
+      - name: Zip output
+        run: bash ./zip_output.sh
+      - name: Upload zip to release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: pico-alpine.zip
+          fail_on_unmatched_files: true
