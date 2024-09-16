@@ -5,6 +5,8 @@ jobs:
     runs-on: ubuntu-latest
     name: Build
     steps:
+      - name: Setup QEMU
+        uses: docker/setup-qemu-action@v3
       - name: Checkout
         uses: actions/checkout@master
       - name: Make rootfs
