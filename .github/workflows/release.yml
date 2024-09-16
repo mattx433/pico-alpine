@@ -10,7 +10,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@master
       - name: Make rootfs
-        run: bash ./make_rootfs.sh
+        run: sudo bash ./make_rootfs.sh
       - name: Build with Luckfox SDK
         run: bash ./build.sh
       - name: Zip output
