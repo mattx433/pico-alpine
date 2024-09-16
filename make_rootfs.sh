@@ -26,11 +26,13 @@ echo "ttyFIQ0" >> rootfs/etc/securetty
 
 ## ADD OPENRC ##
 cp --dereference /etc/resolv.conf rootfs/etc/resolv.conf
-chroot rootfs /bin/sh -c "apk add openrc util-linux lrzsz"
+chroot rootfs /bin/sh -c "apk add openrc util-linux ckermit"
 chroot rootfs /bin/sh -c "rc-update add devfs sysinit"
 chroot rootfs /bin/sh -c "rc-update add procfs sysinit"
 chroot rootfs /bin/sh -c "rc-update add sysfs sysinit"
 chroot rootfs /bin/sh -c "rc-update add root boot"
+chroot rootfs /bin/sh -c "rc-update add swclock boot"
+chroot rootfs /bin/sh -c "rc-update add seedrng boot"
 
 ## REPACK ROOTFS ##
 tar -C rootfs -cpzf luckfox-sdk/prebuilt_rootfs.tar.gz .
