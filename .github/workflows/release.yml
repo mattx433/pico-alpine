@@ -19,12 +19,10 @@ jobs:
         run: sudo bash ./make_rootfs.sh
       - name: Build with Luckfox SDK
         run: bash ./build.sh
-      - name: Zip output
-        run: bash ./zip_output.sh
-      - name: Upload zip to artifacts
+      - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          path: ./pico-alpine.zip
+          path: luckfox-sdk/output/image
       - name: Upload zip to release
         uses: softprops/action-gh-release@v2
         with:

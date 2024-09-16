@@ -5,7 +5,7 @@
 ::wait:/sbin/openrc default
 
 # Put a getty on the serial port
-ttyFIQ0::respawn:/sbin/agetty --autologin root ttyFIQ0 vt100
+ttyFIQ0::respawn:/sbin/getty --autologin root ttyFIQ0 vt100
 
 # Stuff to do for the 3-finger salute
 ::ctrlaltdel:/sbin/reboot
