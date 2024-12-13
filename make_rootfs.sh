@@ -13,7 +13,7 @@ set -xe
 rm -f rootfs.tar.gz rootfs.tar luckfox-sdk/prebuilt_rootfs.tar.gz
 
 ## GET ROOTFS ##
-wget https://dl-cdn.alpinelinux.org/alpine/v3.20/releases/armv7/alpine-minirootfs-3.20.3-armv7.tar.gz -O rootfs.tar.gz
+wget https://dl-cdn.alpinelinux.org/alpine/v3.21/releases/armv7/alpine-minirootfs-3.21.0-armv7.tar.gz -O rootfs.tar.gz
 
 ## UNPACK ROOTFS ##
 mkdir rootfs
