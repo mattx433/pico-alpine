@@ -42,7 +42,7 @@ chroot rootfs /bin/sh -c "rc-update add swclock boot"
 chroot rootfs /bin/sh -c "rc-update add seedrng boot"
 
 ## REPACK ROOTFS ##
-tar -C rootfs -cpzf luckfox-sdk/prebuilt_rootfs.tar.gz .
+tar -C rootfs -cpzf luckfox-sdk/sysdrv/tools/board/custom/custom.tar.gz .
 
 ## CLEANUP ##
 # rm -rf is not as bad of an idea if script went OK
