@@ -24,9 +24,16 @@ rm rootfs.tar.gz
 cp inittab rootfs/etc/inittab
 echo "ttyFIQ0" >> rootfs/etc/securetty
 
+## ADD EXTRA PACKAGES ##
+# util-linux: provides full version of dmesg, mount etc
+# ckermit: provides file transfer over serial
+# e2fsprogs: provides fsck.ext4
+# e2fsprogs-extra: provides resize2fs
+chroot rootfs /bin/sh -c "apk add util-linux ckermit e2fsprogs e2fsprogs-extra"
+
 ## ADD OPENRC ##
 cp --dereference /etc/resolv.conf rootfs/etc/resolv.conf
-chroot rootfs /bin/sh -c "apk add openrc util-linux ckermit"
+chroot rootfs /bin/sh -c "apk add openrc"
 chroot rootfs /bin/sh -c "rc-update add devfs sysinit"
 chroot rootfs /bin/sh -c "rc-update add procfs sysinit"
 chroot rootfs /bin/sh -c "rc-update add sysfs sysinit"
