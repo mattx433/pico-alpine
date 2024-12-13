@@ -29,10 +29,10 @@ echo "ttyFIQ0" >> rootfs/etc/securetty
 # ckermit: provides file transfer over serial
 # e2fsprogs: provides fsck.ext4
 # e2fsprogs-extra: provides resize2fs
+cp --dereference /etc/resolv.conf rootfs/etc/resolv.conf
 chroot rootfs /bin/sh -c "apk add util-linux ckermit e2fsprogs e2fsprogs-extra"
 
 ## ADD OPENRC ##
-cp --dereference /etc/resolv.conf rootfs/etc/resolv.conf
 chroot rootfs /bin/sh -c "apk add openrc"
 chroot rootfs /bin/sh -c "rc-update add devfs sysinit"
 chroot rootfs /bin/sh -c "rc-update add procfs sysinit"
@@ -40,6 +40,9 @@ chroot rootfs /bin/sh -c "rc-update add sysfs sysinit"
 chroot rootfs /bin/sh -c "rc-update add root boot"
 chroot rootfs /bin/sh -c "rc-update add swclock boot"
 chroot rootfs /bin/sh -c "rc-update add seedrng boot"
+
+## REMOVE RESOLV.CONF ##
+chroot rootfs /bin/sh -c "rm /etc/resolv.conf"
 
 ## REPACK ROOTFS ##
 tar -C rootfs -cpzf luckfox-sdk/sysdrv/tools/board/custom/custom.tar.gz .
