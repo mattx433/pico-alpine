@@ -29,8 +29,9 @@ echo "ttyFIQ0" >> rootfs/etc/securetty
 # ckermit: provides file transfer over serial
 # e2fsprogs: provides fsck.ext4
 # e2fsprogs-extra: provides resize2fs
+# gptfdisk: allows editing GPT partition tables
 cp --dereference /etc/resolv.conf rootfs/etc/resolv.conf
-chroot rootfs /bin/sh -c "apk add util-linux ckermit e2fsprogs e2fsprogs-extra"
+chroot rootfs /bin/sh -c "apk add util-linux ckermit e2fsprogs e2fsprogs-extra gptfdisk"
 
 ## ADD OPENRC ##
 chroot rootfs /bin/sh -c "apk add openrc"
