@@ -38,8 +38,8 @@ export RK_UBOOT_DEFCONFIG_FRAGMENT=rk-emmc.config
 # sectors 0-33 are reserved by the GPT partition table
 # sector 34 is the first sector that may be used for a partition
 # 34*512 = 17408
-# 32768-17408=15360
-export RK_PARTITION_CMD_IN_ENV="15360@17408(env),512K@32K(idblock),256K(uboot),32M(boot),512M(oem),256M(userdata),-(rootfs)"
+# 32768-17408-512=14848 (one sector of space between env and idblock)
+export RK_PARTITION_CMD_IN_ENV="14848@17408(env),512K@32K(idblock),256K(uboot),32M(boot),512M(oem),256M(userdata),-(rootfs)"
 
 # config partition's filesystem type (squashfs is readonly)
 # emmc:    squashfs/ext4
