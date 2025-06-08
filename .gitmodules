@@ -6,4 +6,4 @@
 	url = https://github.com/mattx433/rk-u-boot
 [submodule "vendor/linux-rockchip"]
 	path = vendor/linux-rockchip
-	url = https://github.com/armbian/linux-rockchip
+	url = https://github.com/mattx433/linux-rockchip
