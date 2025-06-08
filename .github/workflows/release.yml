@@ -7,25 +7,33 @@ jobs:
     runs-on: ubuntu-latest
     name: Build
     steps:
-      - name: Install dtc
-        run: sudo apt-get install -y device-tree-compiler
+      - name: Install dependencies
+        run: sudo apt-get install -y device-tree-compiler gcc-arm-none-eabi
       - name: Setup QEMU
         uses: docker/setup-qemu-action@v3
       - name: Checkout
         uses: actions/checkout@v4
         with:
           submodules: true
+      - name: Make output dir
+        run: mkdir output
       - name: Make rootfs
         run: sudo bash ./make_rootfs.sh
-      - name: Build with Luckfox SDK
-        run: bash ./build.sh
+      - name: Make kernel
+        run: bash ./make_kernel.sh
+      - name: Make u-boot
+        run: bash ./make_uboot.sh
+      - name: Make idblock
+        run: bash ./make_idblock.sh
+      - name: Pack image
+        run: sudo bash ./make_sd_image.sh
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          path: luckfox-sdk/output/image
-      - name: Upload zip to release
-        uses: softprops/action-gh-release@v2
-        with:
-          files: pico-alpine.zip
-          fail_on_unmatched_files: true
-        if: startsWith(github.ref, 'refs/tags/')
+          path: output
+#      - name: Upload zip to release
+#        uses: softprops/action-gh-release@v2
+#        with:
+#          files: pico-alpine.zip
+#          fail_on_unmatched_files: true
+#        if: startsWith(github.ref, 'refs/tags/')

@@ -21,7 +21,7 @@ tar -C rootfs -xpzf rootfs.tar.gz --numeric-owner
 rm rootfs.tar.gz
 
 ## SERIAL LOGIN ##
-cp inittab rootfs/etc/inittab
+cp configs/inittab rootfs/etc/inittab
 echo "ttyFIQ0" >> rootfs/etc/securetty
 
 ## ADD OPENRC ##
@@ -35,7 +35,7 @@ chroot rootfs /bin/sh -c "rc-update add swclock boot"
 chroot rootfs /bin/sh -c "rc-update add seedrng boot"
 
 ## REPACK ROOTFS ##
-tar -C rootfs -cpzf luckfox-sdk/prebuilt_rootfs.tar.gz .
+tar -C rootfs -cpzf output/rootfs.tar.gz .
 
 ## CLEANUP ##
 # rm -rf is not as bad of an idea if script went OK

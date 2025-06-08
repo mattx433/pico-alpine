@@ -1,3 +1,9 @@
-[submodule "luckfox-sdk"]
-	path = luckfox-sdk
-	url = https://github.com/LuckfoxTECH/luckfox-pico
+[submodule "vendor/rkbin"]
+	path = vendor/rkbin
+	url = https://github.com/rockchip-linux/rkbin
+[submodule "vendor/rk-u-boot"]
+	path = vendor/rk-u-boot
+	url = https://github.com/mattx433/rk-u-boot
+[submodule "vendor/linux-rockchip"]
+	path = vendor/linux-rockchip
+	url = https://github.com/armbian/linux-rockchip
