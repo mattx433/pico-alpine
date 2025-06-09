@@ -21,6 +21,7 @@ sgdisk --set-alignment=64 --new=4:24640:$(sgdisk --end-of-largest $TARGET) --cha
 
 ## U-BOOT ENVIRONMENT ##
 mkenvimage -s 0x8000 -o output/env.img configs/default-env.txt
+chmod 644 output/env.img
 
 ## INSTALLATION ##
 dd if=output/idblock.img of=$TARGET bs=512 seek=64 conv=notrunc
