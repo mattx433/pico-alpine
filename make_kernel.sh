@@ -11,7 +11,7 @@ fi
 cd vendor/linux-rockchip
 make -j$(nproc)
 cp arch/arm/boot/zImage ../../output
-cp vendor/linux-rockchip/arch/arm/boot/dts/rv1103g-luckfox-pico-mini.dtb ../../output
+cp arch/arm/boot/dts/rv1103g-luckfox-pico-mini.dtb ../../output
 make modules_install INSTALL_MOD_PATH=$PWD/../../output/modpfx
 cd ../../output/modpfx
 tar -czvf ../mods.tar.gz lib
