@@ -1,0 +1,1 @@
+bootargs=rk_dma_heap_cma=1M
