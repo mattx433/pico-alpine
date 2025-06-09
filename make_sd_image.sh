@@ -3,7 +3,7 @@ set -e
 
 TARGET=output/sd.img
 [ -f $TARGET ] && rm $TARGET
-fallocate -l 60M $TARGET
+fallocate -l 128M $TARGET
 
 ## PARTITIONS ##
 sgdisk --clear --mbrtogpt $TARGET
@@ -31,8 +31,8 @@ MAPPER=$(echo $LOOPDEV | sed "s+loop+mapper/loop+g")
 
 ## ROOTFS INSTALLATION ##
 mkdir mnt
-mkfs.ext4 ${MAPPER}p5
-mount ${MAPPER}p5 mnt
+mkfs.ext4 ${MAPPER}p4
+mount ${MAPPER}p4 mnt
 tar -C mnt -xpf output/rootfs.tar.gz
 mkdir -p mnt/boot
 cp output/zImage mnt/boot
