@@ -19,8 +19,8 @@ sgdisk --set-alignment=64 --new=3:24576:32767 --change-name=3:trust -t 3:a016 $T
 # 32KiB partition for U-Boot environment
 # using the Linux reserved partition type as there's nothing that seems to match
 sgdisk --set-alignment=64 --new=4:32768:32831 --change-name=4:env -t 4:8301 $TARGET
-# rest of the disk goes to rootfs
-sgdisk --set-alignment=64 --new=5:32832:$(sgdisk --end-of-largest $TARGET) --change-name=5:rootfs -t 5:8300 $TARGET
+# rest of the disk goes to rootfs, which is also marked bootable
+sgdisk --set-alignment=64 --new=5:32832:$(sgdisk --end-of-largest $TARGET) --change-name=5:rootfs -t 5:8300 --attributes=5:set:2 $TARGET
 
 ## INSTALLATION ##
 dd if=output/idblock.img of=$TARGET bs=512 seek=64 conv=notrunc
@@ -40,6 +40,7 @@ tar -C mnt -xpf output/rootfs.tar.gz
 mkdir -p mnt/boot
 cp output/zImage mnt/boot
 cp vendor/linux-rockchip/arch/arm/boot/dts/rv1103g-luckfox-pico-mini.dtb mnt/boot
+mkimage -A arm -T script -C none -n 'System boot script' -d configs/boot.cmd mnt/boot/boot.scr
 umount mnt
 rmdir mnt
 
