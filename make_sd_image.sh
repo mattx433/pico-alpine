@@ -36,7 +36,7 @@ mount ${MAPPER}p5 mnt
 tar -C mnt -xpf output/rootfs.tar.gz
 mkdir -p mnt/boot
 cp output/zImage mnt/boot
-cp vendor/linux-rockchip/arch/arm/boot/dts/rv1103g-luckfox-pico-mini.dtb mnt/boot
+cp output/rv1103g-luckfox-pico-mini.dtb mnt/boot
 mkimage -A arm -T script -C none -n 'System boot script' -d configs/boot.cmd mnt/boot/boot.scr
 umount mnt
 rmdir mnt

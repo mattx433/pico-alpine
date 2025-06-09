@@ -11,3 +11,4 @@ fi
 cd vendor/linux-rockchip
 make -j$(nproc)
 cp arch/arm/boot/zImage ../../output
+cp vendor/linux-rockchip/arch/arm/boot/dts/rv1103g-luckfox-pico-mini.dtb ../../output
