@@ -13,14 +13,11 @@ sgdisk --set-alignment=64 --new=1:64:8255 --change-name=1:idblock -t 1:a000 $TAR
 # 4MiB partition for U-Boot
 # using the U-Boot bootloader partition type
 sgdisk --set-alignment=64 --new=2:16384:24575 --change-name=2:uboot -t 2:b000 $TARGET
-# 4MiB partition for trusted firmware (currently unused)
-# using Android QSEE/tz partition type as it's the closest match
-sgdisk --set-alignment=64 --new=3:24576:32767 --change-name=3:trust -t 3:a016 $TARGET
 # 32KiB partition for U-Boot environment
 # using the Linux reserved partition type as there's nothing that seems to match
-sgdisk --set-alignment=64 --new=4:32768:32831 --change-name=4:env -t 4:8301 $TARGET
+sgdisk --set-alignment=64 --new=3:24576:24639 --change-name=3:env -t 3:8301 $TARGET
 # rest of the disk goes to rootfs, which is also marked bootable
-sgdisk --set-alignment=64 --new=5:32832:$(sgdisk --end-of-largest $TARGET) --change-name=5:rootfs -t 5:8300 --attributes=5:set:2 $TARGET
+sgdisk --set-alignment=64 --new=4:24640:$(sgdisk --end-of-largest $TARGET) --change-name=4:rootfs -t 4:8300 --attributes=4:set:2 $TARGET
 
 ## INSTALLATION ##
 dd if=output/idblock.img of=$TARGET bs=512 seek=64 conv=notrunc
