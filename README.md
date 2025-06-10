@@ -1,4 +1,4 @@
 # pico-alpine
-Alpine Linux for the Luckfox Pico Mini B.
-Downloads are available in Releases and are meant to be flashed with SocToolKit.
+Alpine Linux for the Luckfox Pico Mini A.
+Downloads are available as GitHub Actions artifacts, and `sd.img` should be ready to flash.
 

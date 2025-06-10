@@ -19,14 +19,10 @@ sgdisk --set-alignment=64 --new=3:24576:24639 --change-name=3:env -t 3:8301 $TAR
 # rest of the disk goes to rootfs, which is also marked bootable
 sgdisk --set-alignment=64 --new=4:24640:$(sgdisk --end-of-largest $TARGET) --change-name=4:rootfs -t 4:8300 --attributes=4:set:2 $TARGET
 
-## U-BOOT ENVIRONMENT ##
-mkenvimage -s 0x8000 -o output/env.img configs/default-env.txt
-chmod 644 output/env.img
-
 ## INSTALLATION ##
 dd if=output/idblock.img of=$TARGET bs=512 seek=64 conv=notrunc
 dd if=output/u-boot.itb of=$TARGET bs=512 seek=16384 conv=notrunc
-dd if=output/env.img of=$TARGET bs=512 seek=24576 conv=notrunc
+# we leave u-boot environment empty for now to make it use defaults
 
 ## LOOP SETUP ##
 LOOPDEV=$(losetup -f)
