@@ -35,6 +35,7 @@ mkdir mnt
 mkfs.ext4 ${MAPPER}p4
 mount ${MAPPER}p4 mnt
 tar -C mnt -xpf output/rootfs.tar.gz
+tar --no-same-owner -C mnt -xpf output/mods.tar.gz
 mkdir -p mnt/boot
 cp output/zImage mnt/boot
 cp output/rv1103g-luckfox-pico-mini.dtb mnt/boot
