@@ -26,7 +26,7 @@ echo "ttyFIQ0" >> rootfs/etc/securetty
 
 ## ADD OPENRC ##
 cp --dereference /etc/resolv.conf rootfs/etc/resolv.conf
-chroot rootfs /bin/sh -c "apk add openrc util-linux ckermit e2fsprogs-extra gptfdisk busybox-openrc busybox-mdev-openrc"
+chroot rootfs /bin/sh -c "apk add openrc util-linux ckermit e2fsprogs-extra gptfdisk busybox-openrc busybox-mdev-openrc ppp"
 chroot rootfs /bin/sh -c "rc-update add dmesg sysinit"
 chroot rootfs /bin/sh -c "rc-update add devfs sysinit"
 chroot rootfs /bin/sh -c "rc-update add procfs sysinit"
